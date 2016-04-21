@@ -12,15 +12,22 @@ class ViewController: UIViewController {
 
     
     var timer = NSTimer()
-    var time = 0
+    
+    var timeMiliSecond = 0
+    var timeSecond = 0
+    var timeMinute = 0
     
     @IBOutlet var startButton: UIBarButtonItem!
     @IBOutlet var stopButton: UIBarButtonItem!
     @IBOutlet var pauseButton: UIBarButtonItem!
-    @IBOutlet var TimerBox: UILabel!
+    
+    
+    @IBOutlet var minuteLabel: UILabel!
+    @IBOutlet var secondLabel: UILabel!
+    @IBOutlet var miliSecondLabel: UILabel!
     
     @IBAction func StartStopWatch(sender: AnyObject) {
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.increaseTimer), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(ViewController.increaseTimer), userInfo: nil, repeats: true)
         
         startButton.enabled = false;
         stopButton.enabled = true
@@ -29,17 +36,25 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func ResetStopWatch(sender: AnyObject) {
+    @IBAction func ResetStopWatch(sender: AnyObject)
+    {
         timer.invalidate()
-        time = 0
-        TimerBox.text = "0"
+        
+        timeMiliSecond = 0
+        timeSecond = 0
+        timeMinute = 0
+        
+        secondLabel.text = "00"
+        minuteLabel.text = "00"
+        miliSecondLabel.text = "00"
         
         stopButton.enabled = false
         pauseButton.enabled = false
         startButton.enabled = true
     }
     
-    @IBAction func PauseStopWatch(sender: AnyObject) {
+    @IBAction func PauseStopWatch(sender: AnyObject)
+    {
         timer.invalidate()
         
         stopButton.enabled = true
@@ -47,9 +62,57 @@ class ViewController: UIViewController {
         startButton.enabled = true
     }
     
-    func increaseTimer() {
-        time += 1
-        TimerBox.text = "\(time)"
+    func increaseTimer()
+    {
+        
+        timeMiliSecond += 1
+        
+        if(timeMiliSecond==100)
+        {
+            timeMiliSecond=0;
+            timeSecond += 1
+        }
+        if(timeSecond==60)
+        {
+            timeSecond = 0;
+            timeMinute += 1;
+        }
+        if(timeMinute==60)
+        {
+            timeMiliSecond=0
+            timeSecond=0
+            timeMinute=0
+        }
+        
+        if(timeMiliSecond<10)
+        {
+            miliSecondLabel.text = "0\(timeMiliSecond)"
+        }
+        else if(timeMiliSecond>9)
+        {
+            miliSecondLabel.text = "\(timeMiliSecond)"
+        }
+        
+        if(timeSecond<10)
+        {
+             secondLabel.text = "0\(timeSecond)"
+        }
+        else if(timeSecond>9)
+        {
+            secondLabel.text = "\(timeSecond)"
+        }
+        if(timeMinute<10)
+        {
+           minuteLabel.text = "0\(timeMinute)"
+        }
+        else if(timeMinute>9)
+        {
+            minuteLabel.text = "\(timeMinute)"
+        }
+        
+        
+        
+        
     }
     
     override func viewDidLoad() {
