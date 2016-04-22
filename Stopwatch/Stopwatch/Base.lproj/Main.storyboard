@@ -65,11 +65,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" scrollEnabled="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGW-rY-Q7N">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGW-rY-Q7N">
                                 <rect key="frame" x="20" y="178" width="280" height="314"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VMf-3M-JlN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="VMf-3M-JlN">
                                         <rect key="frame" x="0.0" y="28" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VMf-3M-JlN" id="tRO-bQ-59m">
@@ -136,6 +136,7 @@
                         <outlet property="miliSecondLabel" destination="hsA-IR-VJ8" id="sEO-ZU-62i"/>
                         <outlet property="minuteLabel" destination="Iy6-23-9GD" id="fOs-tU-fLK"/>
                         <outlet property="pauseButton" destination="6he-d4-y9g" id="oka-cI-tdH"/>
+                        <outlet property="reloadButton" destination="55a-wE-gJG" id="0Fp-RB-VOF"/>
                         <outlet property="secondLabel" destination="xLO-Y5-wOc" id="y8W-ne-Rgq"/>
                         <outlet property="startButton" destination="fhd-BF-R7K" id="gOl-Rf-RJf"/>
                         <outlet property="stopButton" destination="Mt1-Qb-mI4" id="hhw-6V-knN"/>

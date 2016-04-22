@@ -21,6 +21,8 @@ class ViewController: UIViewController,UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
     
+    
+    @IBOutlet var reloadButton: UIBarButtonItem!
     @IBOutlet var startButton: UIBarButtonItem!
     @IBOutlet var stopButton: UIBarButtonItem!
     @IBOutlet var pauseButton: UIBarButtonItem!
@@ -35,6 +37,7 @@ class ViewController: UIViewController,UITableViewDelegate {
     @IBAction func reloadTableViewData(sender: AnyObject) {
         counter = 0
         tableView.reloadData()
+        reloadButton.enabled = false
     }
     
     @IBAction func StartStopWatch(sender: AnyObject) {
@@ -143,6 +146,8 @@ class ViewController: UIViewController,UITableViewDelegate {
     @IBAction func addToTableView(sender: AnyObject) {
         counter += 1
         
+        reloadButton.enabled = true
+        
         tableView.beginUpdates()
         tableView.insertRowsAtIndexPaths([
             NSIndexPath(forRow: 0, inSection: 0)
@@ -157,6 +162,8 @@ class ViewController: UIViewController,UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        reloadButton.enabled = false;
         stopButton.enabled = false
         pauseButton.enabled = false
         startButton.enabled = true
