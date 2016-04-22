@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDelegate {
 
     
     var timer = NSTimer()
@@ -16,6 +16,10 @@ class ViewController: UIViewController {
     var timeMiliSecond = 0
     var timeSecond = 0
     var timeMinute = 0
+    
+    var counter = 0;
+    
+    @IBOutlet var tableView: UITableView!
     
     @IBOutlet var startButton: UIBarButtonItem!
     @IBOutlet var stopButton: UIBarButtonItem!
@@ -26,7 +30,15 @@ class ViewController: UIViewController {
     @IBOutlet var secondLabel: UILabel!
     @IBOutlet var miliSecondLabel: UILabel!
     
+    
+    
+    @IBAction func reloadTableViewData(sender: AnyObject) {
+        counter = 0
+        tableView.reloadData()
+    }
+    
     @IBAction func StartStopWatch(sender: AnyObject) {
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(ViewController.increaseTimer), userInfo: nil, repeats: true)
         
         startButton.enabled = false;
@@ -109,10 +121,37 @@ class ViewController: UIViewController {
         {
             minuteLabel.text = "\(timeMinute)"
         }
+    }
+    
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
+        return counter;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
         
+        let time = minuteLabel.text! + ":" + secondLabel.text! + ":" + miliSecondLabel.text!
+        cell.textLabel?.text = time
         
+        return cell;
+    }
+    
+    @IBAction func addToTableView(sender: AnyObject) {
+        counter += 1
+        
+        tableView.beginUpdates()
+        tableView.insertRowsAtIndexPaths([
+            NSIndexPath(forRow: counter-1, inSection: 0)
+            ], withRowAnimation: .Automatic)
+
+        tableView.endUpdates()
+        
+//        tableView(tableView, numberOfRowsInSection: counter)
+
     }
     
     override func viewDidLoad() {
