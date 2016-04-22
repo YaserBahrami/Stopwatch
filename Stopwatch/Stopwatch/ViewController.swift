@@ -145,12 +145,12 @@ class ViewController: UIViewController,UITableViewDelegate {
         
         tableView.beginUpdates()
         tableView.insertRowsAtIndexPaths([
-            NSIndexPath(forRow: counter-1, inSection: 0)
+            NSIndexPath(forRow: 0, inSection: 0)
             ], withRowAnimation: .Automatic)
 
         tableView.endUpdates()
         
-//        tableView(tableView, numberOfRowsInSection: counter)
+        
 
     }
     
